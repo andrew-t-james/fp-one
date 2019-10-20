@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^9.5.1",
+    "lit-html": "1.1.2",
     "tailwindcss": "^1.0"
   },
   "devDependencies": {
