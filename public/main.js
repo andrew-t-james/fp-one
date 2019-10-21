@@ -21,26 +21,9 @@ const App = () =>
     </div>
   `;
 
-const Table = ({ meal, calories, meals }) => html`
-  <table class="table-fixed">
-    <thead>
-      <tr>
-        <th class="w-1/2 px-4 py-2">${meal}</th>
-        <th class="w-1/4 px-4 py-2">${calories}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="bg-gray-100">
-        <td class="border px-4 py-2">Breakfast</td>
-        <td class="border px-4 py-2">480</td>
-      </tr>
-    </tbody>
-  </table>
-`;
-
 render(
   html`
-    <${App} meals=${meals} />
+    <${App} />
   `,
   document.body
 );
