@@ -1,20 +1,8 @@
 import { html, render } from "https://unpkg.com/htm/preact/standalone.mjs";
-const meals = [
-  {
-    description: "Breakfast",
-    calories: 409
-  },
-  {
-    description: "Lunch",
-    calories: 293
-  },
-  {
-    description: "Dinner",
-    calories: 404
-  }
-];
+import { meals } from "./data.js";
+import { Table } from "./Table.js";
 
-const App = ({ meals = [] }) =>
+const App = () =>
   html`
     <div class="relative bg-gray-200">
       <div class="absolute inset-0 flex flex-col" aria-hidden="true">
