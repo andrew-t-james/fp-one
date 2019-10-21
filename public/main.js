@@ -14,7 +14,7 @@ const App = () =>
           class="flex flex-col min-h-screen lg:flex-row lg:items-center lg:p-8"
         >
           <div class="mx-auto">
-            <${Table} meal="Meal" calories="Calories" meals=${meals} />
+            <${Table} meals=${meals} />
           </div>
         </div>
       </div>
