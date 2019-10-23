@@ -11,9 +11,9 @@ const TableHeadCell = ({ classNames, input }) => html`
 `;
 
 const TableBody = ({ classNames, children }) => html`
-  <tr class=${classNames}>
+  <tbody class=${classNames}>
     ${children}
-  </tr>
+  </tbody>
 `;
 
 const TableRow = ({ classNames, children }) => html`
@@ -27,7 +27,7 @@ const TableData = ({ classNames, input }) => html`
 `;
 
 const Table = ({ meals = [] }) => html`
-  <table class="table-fixed">
+  <table class="table-auto">
     <${TableHead}>
       <${TableRow}>
         <${TableHeadCell} classNames="w-1/2 px-4 py-2" input="Meal" />
