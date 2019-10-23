@@ -1,9 +1,9 @@
 import { html } from "https://unpkg.com/htm/preact/standalone.mjs";
 
-const TableHead = ({ elem, classNames, children }) => html`
-  <${elem} class=${classNames}>
+const TableHead = ({ classNames, children }) => html`
+  <thead class=${classNames}>
     ${children}
-  </${elem}>
+  </thead>
 `;
 
 const TableHeadCell = ({ classNames, input }) => html`
