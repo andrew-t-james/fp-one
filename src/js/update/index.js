@@ -25,16 +25,21 @@ export function caloriesInputMessage(calories) {
   };
 }
 
-function convertToNumberOrZero(operator) {
-  return function(arg) {
-    const number = operator(arg);
-    if (isNaN(number)) {
-      console.log("number:", { number, arg });
-      return 0;
-    }
-    return number;
-  };
+// function convertToNumberOrZero(operator) {
+//   return function(arg) {
+//     const number = operator(arg);
+//     if (isNaN(number)) {
+//       console.log("number:", { number, arg });
+//       return 0;
+//     }
+//     return number;
+//   };
+// }
+
+function isNumber(arg) {
+  return isNaN(arg) ? 0 : arg;
 }
+
 function update(msg, model) {
   switch (msg.type) {
     case MSGS.SHOW_FORM:
@@ -52,7 +57,8 @@ function update(msg, model) {
         description
       };
     case MSGS.CALORIES_INPUT:
-      const calories = convertToNumberOrZero(Number)(msg.calories);
+      // const calories = convertToNumberOrZero(Number)(msg.calories);
+      let calories = msg.calories |> Number |> isNumber;
       return {
         ...model,
         calories
