@@ -25,6 +25,16 @@ export function caloriesInputMessage(calories) {
   };
 }
 
+function convertToNumberOrZero(operator) {
+  return function(arg) {
+    const number = operator(arg);
+    if (isNaN(number)) {
+      console.log("number:", { number, arg });
+      return 0;
+    }
+    return number;
+  };
+}
 function update(msg, model) {
   switch (msg.type) {
     case MSGS.SHOW_FORM:
@@ -42,7 +52,7 @@ function update(msg, model) {
         description
       };
     case MSGS.CALORIES_INPUT:
-      const { calories } = msg;
+      const calories = convertToNumberOrZero(Number)(msg.calories);
       return {
         ...model,
         calories
