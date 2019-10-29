@@ -1,5 +1,9 @@
 import hh from "hyperscript-helpers";
 import { h } from "virtual-dom";
+import { classNames } from "./classNames";
+
+const { pre, div, h1, button, form, label, input } = hh(h);
+
 function fieldSet(labelText, inputValue) {
   return div({ className: "mb-4" }, [
     label({ className: classNames.formLabel }, labelText),
@@ -13,6 +17,16 @@ function buttonSet(dispatch) {
     button({ className: classNames.buttonSecondary }, "Cancel")
   ]);
 }
+
+function formView(dispatch, model) {
+  const { description, calories, showForm } = model;
+  if (showForm) {
+    return form({ className: classNames.form }, [
+      fieldSet("Meal", description),
+      fieldSet("Calories", calories || ""),
+      buttonSet()
+    ]);
+  }
 
 
 function view(dispatch, model) {
