@@ -1,6 +1,7 @@
 import hh from "hyperscript-helpers";
 import { h } from "virtual-dom";
 import { classNames } from "./classNames";
+import { MSGS } from "../update";
 
 const { pre, div, h1, button, form, label, input } = hh(h);
 
@@ -29,7 +30,13 @@ function formView(dispatch, model) {
   }
 
   return div({ className: "mb-4" }, [
-    button({ className: classNames.buttonPrimary }, "Show Form")
+    button(
+      {
+        className: classNames.buttonPrimary,
+        onclick: () => dispatch(MSGS.SHOW_FORM)
+      },
+      "Show Form"
+    )
   ]);
 }
 
