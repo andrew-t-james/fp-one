@@ -28,9 +28,17 @@ function formView(dispatch, model) {
     ]);
   }
 
+  return div({ className: "mb-4" }, [
+    button({ className: classNames.buttonPrimary }, "Show Form")
+  ]);
+}
 
 function view(dispatch, model) {
-  return pre(JSON.stringify(model, null, 2));
+  return div({ className: classNames.container }, [
+    h1({ className: classNames.h1 }, "Calorie Counter"),
+    formView(dispatch, model),
+    pre(JSON.stringify(model, null, 2))
+  ]);
 }
 
 export default view;
