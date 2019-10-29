@@ -13,6 +13,7 @@ module.exports = {
     "jest": true
   },
   "rules": {
-    "semi": 0
+    "semi": 0,
+    "no-case-declarations": 0
   }
 }
