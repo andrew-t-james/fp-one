@@ -1,7 +1,8 @@
 const MSGS = {
   SHOW_FORM: "SHOW_FORM",
   MEAL_INPUT: "MEAL_INPUT",
-  CALORIES_INPUT: "CALORIES_INPUT"
+  CALORIES_INPUT: "CALORIES_INPUT",
+  SAVE_MEAL: "SAVE_MEAL"
 };
 
 export function showFormMsg(showForm) {
@@ -25,6 +26,8 @@ export function caloriesInputMessage(calories) {
   };
 }
 
+export const saveMealMessage = { type: MSGS.SAVE_MEAL };
+
 // function convertToNumberOrZero(operator) {
 //   return function(arg) {
 //     const number = operator(arg);
@@ -38,6 +41,24 @@ export function caloriesInputMessage(calories) {
 
 function isNumber(arg) {
   return isNaN(arg) ? 0 : arg;
+}
+
+function add(msg, model) {
+  const { nextId, description, calories } = model;
+  const meal = {
+    id: nextId,
+    description,
+    calories
+  };
+  const meals = [...model.meals, meal];
+  return {
+    ...model,
+    meals,
+    nextId: nextId + 1,
+    description: "",
+    calories: "",
+    showForm: false
+  };
 }
 
 function update(msg, model) {
@@ -63,6 +84,8 @@ function update(msg, model) {
         ...model,
         calories
       };
+    case MSGS.SAVE_MEAL:
+      return add(msg, model);
     default:
       return model;
   }
