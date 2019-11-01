@@ -5,6 +5,10 @@ export const classNames = {
     "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
   buttonSecondary:
     "bg-white hover:bg-gray-100 text-gray-800 font-semibold text-red-500 py-2 px-4 border border-gray-400 rounded shadow",
+  buttonSmall:
+    "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded",
+  buttonSmallDelete:
+    "bg-white hover:bg-gray-100 text-gray-800 font-semibold text-red-500 py-1 px-2 border border-gray-400 rounded shadow",
   form: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
   formLabel: "block text-gray-700 text-sm font-bold mb-2",
   formInput:
