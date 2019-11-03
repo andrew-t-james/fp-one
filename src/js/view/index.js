@@ -85,6 +85,7 @@ function formView(dispatch, model) {
 }
 
 function tableView(model) {
+  if (!model.meals.length) return "Go eat a 🍔!!!";
   return table({ className: classNames.table }, [
     tableHead(),
     tableBody(model)
@@ -96,24 +97,34 @@ function tableHead() {
     { className: "" },
     tr({}, [
       th({ className: "px-4 py-2" }, "Meal"),
-      th({ className: "px-4 py-2" }, "Calories")
+      th({ className: "px-4 py-2" }, "Calories"),
+      th({ className: "px-4 py-2" }, "")
     ])
   );
 }
 
 function tableBody(model) {
   const { meals } = model;
-  const createRow = meals.map(meal => [
-    td({ className: " border px-4 py-2 " }, meal.description),
-    td({ className: " border px-4 py-2" }, [
-      meal.calories,
-      [
+  let sum = 0;
+  const createMealRow = meals.map(meal => {
+    sum += meal.calories;
+    return tr({ className: "" }, [
+      td({ className: classNames.tableCell }, meal.description),
+      td({ className: classNames.tableCell }, meal.calories),
+      td({ className: classNames.tableCell }, [
         button({ className: `${classNames.buttonSmall} ml-3` }, "Edit"),
         button({ className: `${classNames.buttonSmallDelete} ml-3` }, "Delete")
-      ]
+      ])
+    ]);
+  });
+
+  return tbody({ className: "" }, [
+    createMealRow,
+    tr({ className: "" }, [
+      td({ className: "pl-4 font-extrabold" }, "Total: "),
+      td({ className: "pl-4 font-extrabold" }, sum)
     ])
   ]);
-  return tbody({ className: "" }, tr({}, createRow));
 }
 
 function view(dispatch, model) {
