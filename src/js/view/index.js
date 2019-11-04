@@ -5,7 +5,8 @@ import {
   showFormMsg,
   mealInputMessage,
   caloriesInputMessage,
-  saveMealMessage
+  saveMealMessage,
+  deleteMealMessage
 } from "../update";
 
 const {
@@ -84,11 +85,11 @@ function formView(dispatch, model) {
   ]);
 }
 
-function tableView(model) {
+function tableView(dispatch, model) {
   if (!model.meals.length) return "Go eat a 🍔!!!";
   return table({ className: classNames.table }, [
     tableHead(),
-    tableBody(model)
+    tableBody(dispatch, model)
   ]);
 }
 
@@ -103,7 +104,7 @@ function tableHead() {
   );
 }
 
-function tableBody(model) {
+function tableBody(dispatch, model) {
   const { meals } = model;
   let sum = 0;
   const createMealRow = meals.map(meal => {
@@ -113,7 +114,13 @@ function tableBody(model) {
       td({ className: classNames.tableCell }, meal.calories),
       td({ className: classNames.tableCell }, [
         button({ className: `${classNames.buttonSmall} ml-3` }, "Edit"),
-        button({ className: `${classNames.buttonSmallDelete} ml-3` }, "Delete")
+        button(
+          {
+            className: `${classNames.buttonSmallDelete} ml-3`,
+            onclick: () => dispatch(deleteMealMessage(meal.id))
+          },
+          "Delete"
+        )
       ])
     ]);
   });
@@ -131,7 +138,7 @@ function view(dispatch, model) {
   return div({ className: classNames.container }, [
     h1({ className: classNames.h1 }, "Calorie Counter"),
     formView(dispatch, model),
-    tableView(model),
+    tableView(dispatch, model),
     pre(JSON.stringify(model, null, 2))
   ]);
 }
