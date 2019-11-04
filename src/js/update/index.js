@@ -2,7 +2,8 @@ const MSGS = {
   SHOW_FORM: "SHOW_FORM",
   MEAL_INPUT: "MEAL_INPUT",
   CALORIES_INPUT: "CALORIES_INPUT",
-  SAVE_MEAL: "SAVE_MEAL"
+  SAVE_MEAL: "SAVE_MEAL",
+  DELETE_MEAL: "DELETE_MEAL"
 };
 
 export function showFormMsg(showForm) {
@@ -28,6 +29,12 @@ export function caloriesInputMessage(calories) {
 
 export const saveMealMessage = { type: MSGS.SAVE_MEAL };
 
+export const deleteMealMessage = id => {
+  return {
+    type: MSGS.DELETE_MEAL,
+    id
+  };
+};
 // function convertToNumberOrZero(operator) {
 //   return function(arg) {
 //     const number = operator(arg);
@@ -86,6 +93,13 @@ function update(msg, model) {
       };
     case MSGS.SAVE_MEAL:
       return add(msg, model);
+    case MSGS.DELETE_MEAL:
+      const { id } = msg;
+      const meals = model.meals.filter(meal => meal.id !== id);
+      return {
+        ...model,
+        meals
+      };
     default:
       return model;
   }
