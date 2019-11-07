@@ -95,7 +95,7 @@ function tableView(dispatch, model) {
 
 function tableHead() {
   return thead(
-    { className: "" },
+    {},
     tr({}, [
       th({ className: "px-4 py-2" }, "Meal"),
       th({ className: "px-4 py-2" }, "Calories"),
@@ -109,7 +109,7 @@ function tableBody(dispatch, model) {
   let sum = 0;
   const createMealRow = meals.map(meal => {
     sum += meal.calories;
-    return tr({ className: "" }, [
+    return tr({}, [
       td({ className: classNames.tableCell }, meal.description),
       td({ className: classNames.tableCell }, meal.calories),
       td({ className: classNames.tableCell }, [
@@ -127,7 +127,7 @@ function tableBody(dispatch, model) {
 
   return tbody({ className: "" }, [
     createMealRow,
-    tr({ className: "" }, [
+    tr({}, [
       td({ className: "pl-4 font-extrabold" }, "Total: "),
       td({ className: "pl-4 font-extrabold" }, sum)
     ])
