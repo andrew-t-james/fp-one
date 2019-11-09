@@ -99,7 +99,7 @@ function edit(msg, model) {
 }
 function update(msg, model) {
   switch (msg.type) {
-    case MSGS.SHOW_FORM:
+    case MSGS.SHOW_FORM: {
       const { showForm } = msg;
       return {
         ...model,
@@ -107,28 +107,47 @@ function update(msg, model) {
         description: "",
         calories: 0
       };
-    case MSGS.MEAL_INPUT:
+    }
+    case MSGS.MEAL_INPUT: {
       const { description } = msg;
       return {
         ...model,
         description
       };
-    case MSGS.CALORIES_INPUT:
+    }
+    case MSGS.CALORIES_INPUT: {
       // const calories = convertToNumberOrZero(Number)(msg.calories);
       let calories = msg.calories |> Number |> isNumber;
       return {
         ...model,
         calories
       };
-    case MSGS.SAVE_MEAL:
-      return add(msg, model);
-    case MSGS.DELETE_MEAL:
+    }
+    case MSGS.SAVE_MEAL: {
+      const { editId } = model;
+      const updatedModel = editId !== null ? edit(msg, model) : add(msg, model);
+      return updatedModel;
+    }
+    case MSGS.DELETE_MEAL: {
       const { id } = msg;
       const meals = model.meals.filter(meal => meal.id !== id);
       return {
         ...model,
         meals
       };
+    }
+    case MSGS.EDIT_MEAL: {
+      const { editId } = msg;
+      const meals = model.meals.find(meal => meal.id === editId);
+      const { description, calories } = meals;
+      return {
+        ...model,
+        editId,
+        description,
+        calories,
+        showForm: true
+      };
+    }
     default:
       return model;
   }
