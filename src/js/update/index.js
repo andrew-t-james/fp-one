@@ -37,10 +37,10 @@ export function deleteMealMessage(id) {
   };
 }
 
-export function editMealMessage(id) {
+export function editMealMessage(editId) {
   return {
     type: MSGS.EDIT_MEAL,
-    id
+    editId
   };
 }
 // function convertToNumberOrZero(operator) {
