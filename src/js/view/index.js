@@ -117,10 +117,7 @@ function tableBody(dispatch, model) {
         button(
           {
             className: `${classNames.buttonSmall} ml-3`,
-            onclick: () => {
-              dispatch(showFormMsg(true));
-              dispatch(editMealMessage(meal.id));
-            }
+            onclick: () => dispatch(editMealMessage(meal.id))
           },
           "Edit"
         ),
