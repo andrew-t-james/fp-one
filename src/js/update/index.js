@@ -76,6 +76,27 @@ function add(msg, model) {
   };
 }
 
+function edit(msg, model) {
+  const { description, calories, editId } = model;
+  const meals = model.meals.map(meal => {
+    if (meal.id === editId) {
+      return {
+        ...meal,
+        description,
+        calories
+      };
+    }
+    return meal;
+  });
+
+  return {
+    ...model,
+    meals,
+    description: "",
+    calories: "",
+    showForm: false
+  };
+}
 function update(msg, model) {
   switch (msg.type) {
     case MSGS.SHOW_FORM:
