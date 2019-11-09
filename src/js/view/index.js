@@ -6,7 +6,8 @@ import {
   mealInputMessage,
   caloriesInputMessage,
   saveMealMessage,
-  deleteMealMessage
+  deleteMealMessage,
+  editMealMessage
 } from "../update";
 
 const {
@@ -113,7 +114,16 @@ function tableBody(dispatch, model) {
       td({ className: classNames.tableCell }, meal.description),
       td({ className: classNames.tableCell }, meal.calories),
       td({ className: classNames.tableCell }, [
-        button({ className: `${classNames.buttonSmall} ml-3` }, "Edit"),
+        button(
+          {
+            className: `${classNames.buttonSmall} ml-3`,
+            onclick: () => {
+              dispatch(showFormMsg(true));
+              dispatch(editMealMessage(meal.id));
+            }
+          },
+          "Edit"
+        ),
         button(
           {
             className: `${classNames.buttonSmallDelete} ml-3`,
